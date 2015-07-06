@@ -213,7 +213,7 @@ func (dr *dropletRunner) LaunchDroplet(appName, dropletName string, startCommand
 		if result.DetectedStartCommand.Web != "" {
 			startArgs = []string{result.DetectedStartCommand.Web}
 		} else {
-			startArgs = []string{dropletName}
+			startArgs = []string{dropletName}//XXX
 		}
 	}
 
@@ -248,13 +248,9 @@ func (dr *dropletRunner) LaunchDroplet(appName, dropletName string, startCommand
 					},
 				},
 				&models.RunAction{
-					Path: "/bin/mkdir",
-					Args: []string{"/tmp/app"},
-				},
-				&models.RunAction{
 					Path: "/bin/tar",
-					Dir:  "/tmp/app",
-					Args: []string{"-zxf", "/tmp/droplet.tgz"},
+					Dir:  "/",
+					Args: []string{"-zxf", "/tmp/droplet.tgz", "--strip-components", "1", "--exclude", "logs", "--exclude", "tmp", "--exclude", "staging_info.yml"},
 				},
 			},
 		},

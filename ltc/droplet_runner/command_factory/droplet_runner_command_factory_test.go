@@ -723,7 +723,7 @@ var _ = Describe("CommandFactory", func() {
 			Expect(dropletNameParam).To(Equal("droplet-name"))
 			Expect(startCommandParam).To(Equal(""))
 			Expect(startArgsParam).To(BeNil())
-			Expect(appEnvParam.WorkingDir).To(Equal("/tmp/app"))
+			Expect(appEnvParam.WorkingDir).To(Equal("/app"))
 			Expect(appEnvParam.Privileged).To(BeFalse())
 			Expect(appEnvParam.Instances).To(Equal(1))
 			Expect(appEnvParam.Monitor).To(Equal(app_runner.MonitorConfig{

@@ -339,13 +339,9 @@ var _ = Describe("DropletRunner", func() {
 						},
 					},
 					&models.RunAction{
-						Path: "/bin/mkdir",
-						Args: []string{"/tmp/app"},
-					},
-					&models.RunAction{
 						Path: "/bin/tar",
-						Dir:  "/tmp/app",
-						Args: []string{"-zxf", "/tmp/droplet.tgz"},
+						Dir:  "/",
+						Args: []string{"-zxf", "/tmp/droplet.tgz", "--strip-components", "1", "--exclude", "logs", "--exclude", "tmp", "--exclude", "staging_info.yml"},
 					},
 				},
 			}))
